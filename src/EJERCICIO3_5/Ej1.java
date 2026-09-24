@@ -35,5 +35,20 @@ public class Ej1 {
                 System.out.println(elemento.getName() +  " es un directorio ");
             }
         }
+
+        //sección de Eliminación
+        if (fichero1.exists()) {
+            fichero1.delete();
+            System.out.println("El fichero config.txt ha sido eliminado");
+        } else {
+            System.out.println("El fichero no ha podido ser eliminado");
+        }
+
+        //eliminación de carpeta
+        if (carpeta.delete()) {
+            System.out.println("La carpeta ha sido eliminada correctametne");
+        } else {
+            System.out.println("No se ha podido eliminar");
+        }
     }
 }
