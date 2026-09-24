@@ -25,5 +25,15 @@ public class Ej1 {
             System.out.println("El fichero config.txt ya existe");
         }
 
+        //comprobacion
+        File [] elementos = carpeta.listFiles(); //lo usamos para obtener lo q hay dentro
+
+        for (File elemento : elementos){
+            if (elemento.isFile()){
+                System.out.println(elemento.getName() + " es un fichero");
+            } else if (elemento.isDirectory()) {
+                System.out.println(elemento.getName() +  " es un directorio ");
+            }
+        }
     }
 }
