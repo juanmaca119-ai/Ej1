@@ -5,12 +5,15 @@ import java.util.Scanner;
 
 public class Ej2 {
 
+    //para copiar archivos
+    private static  final String rutaOrigen = "src/EJERCICIO4_5/Contenido/datos.txt";
+    private static final String rutaDestino = "src/EJERCICIO4_5/Contenido/copia.txt";
+
     //metodo para llamar a la ruta del archivo desde el directorio y poder leerlo
     private static final String rutaFichero = "src/EJERCICIO4_5/Contenido/datos.txt";
 
     //nombre del archivo que se va a leer
     private static final String nombreArchvio ="datos.txt";
-
 
     static void main() throws IOException {
 
@@ -32,6 +35,19 @@ public class Ej2 {
         }
 
 
+
+        //creamos el fichero copia dentro de Contenido
+        File fichero2 = new File(directorio, "copia.txt");
+
+        if (fichero2.createNewFile()) {
+            System.out.println("Se ha creado el fichero");
+        } else {
+            System.out.println("El fichero datos.txt ya existe");
+        }
+
+
+
+        //seccion de eliminacion
         /*if (directorio.delete()) {
             System.out.println("La carpeta ha sido eliminada correctametne");
         } else {
@@ -42,6 +58,18 @@ public class Ej2 {
         Scanner teclado = new Scanner (System.in); //se crea el scanner
         try {
             BufferedWriter escribir = new BufferedWriter(new FileWriter(rutaFichero));
+
+            /*escribir.write("Primera linea desde código fuente");
+            escribir.newLine();
+
+            escribir.write("Segunda linea desde código fuente");
+            escribir.newLine();
+
+            escribir.write("Tercera linea desde código fuente");
+            escribir.newLine();
+
+            escribir.write("Cuarta linea desde código fuente");
+            escribir.newLine(); */
 
             System.out.println("Escribe una linea: ");
             String linea = teclado.nextLine(); //se crea el String usando el nombre del scanner
@@ -70,7 +98,23 @@ public class Ej2 {
         }
 
 
-        //seccion de contabilidad de lineas
+        //seccion de copiar archivos
+        try (BufferedReader leerFichero = new BufferedReader(new FileReader(rutaFichero + rutaOrigen) );
+             BufferedWriter escribirFichero = new BufferedWriter(new FileWriter(rutaFichero + rutaDestino));) {
+            String linea;
+            while ((linea = leerFichero.readLine()) != null) {
+                escribirFichero.write(linea);
+                escribirFichero.newLine();
+            }
+            System.out.println("Fichero copiado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al copiar el fichero.");
+        }
+
+
+
+
+    //seccion de contabilidad de lineas
         int lineas = 0;
 
        try {
